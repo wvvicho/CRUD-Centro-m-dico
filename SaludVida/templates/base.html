@@ -4,14 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro Médico Salud Vida</title>
-</head>
-<header>
-    <h1>Esta es la página base</h1>
-</header>
-<body>
-    
-</body>
-<footer>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+        }
+        
+        .maqueta {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100%;
+        }
 
-</footer>
-</html>
+        footer{
+            margin: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<div class="maqueta">
+    <header>
+        <h1>Centro médico Salud Vida</h1>
+    </header>
+    <body>
+        {% block contenido %}
+        Este es el contenido por defecto
+        {% endblock contenido %}
+    </body>
+    <footer>
+        <span>©Vicente Ignacio Rosales Díaz</span>
+    </footer>
+    </html>
+</div>
