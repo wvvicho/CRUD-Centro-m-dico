@@ -15,7 +15,7 @@ class Medico (models.Model):
     telefono = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):
-        return f"Médico = {self.nombre_completo}, Especialidad = {self.especialidad}"
+        return f"Médico: {self.nombre_completo}, Especialidad: {self.especialidad}"
 
 class Paciente (models.Model):
     nombre_completo = models.CharField(max_length=70)

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block contenido %}
+    <div class="d-flex flex-column text-start align-items-center">
+        <h1 class="mb-4">Ingresar Médicos</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label class="form-label mb-4 mt-4">Nombre completo</label>
+            {{ form.nombre_completo }}
+            <label class="form-label mb-4 mt-4">RUT</label>
+            {{ form.rut }}
+            <label class="form-label mb-4 mt-4">Especialidad</label>
+            {{ form.especialidad }}
+            <label class="form-label mb-4 mt-4">Correo</label>
+            {{ form.correo }}
+            <label class="form-label mb-4 mt-4">Teléfono</label>
+            {{ form.telefono }}
+            <div class=" d-flex flex-row gap-2 w-50 text-center">
+                {% if hay_especialidad %}
+                <button class="btn btn-success mt-4" type="submit">Ingresar</button>
+                {% else %}
+                    <h3 class="text-danger text-nowrap mt-3">Por favor ingrese una especialidad primero.</h3>
+                {% endif %}
+                <a href="{% url 'listar_medicos' %}" class="btn btn-danger mt-4">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

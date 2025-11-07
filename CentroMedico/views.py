@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import FormEspecialidad
-from .models import Especialidad
+from .forms import FormEspecialidad, FormMedico
+from .models import Especialidad, Medico, Paciente
 
 # Create your views here.
 def index(req):
@@ -43,4 +43,48 @@ class EliminarEspecialidades(DeleteView):
     
     def form_valid(self, form):
         messages.success(self.request, "Especialidad eliminada con éxito!")
+        return super().form_valid(form)
+    
+
+
+#CRUD de Médicos
+
+class ListarMedicos(ListView):
+    model = Medico
+    template_name = 'listar_medicos.html'
+    context_object_name = 'medicos'
+
+class CrearMedicos(CreateView):
+    model = Medico
+    form_class = FormMedico
+    template_name = 'form_medicos.html'
+    success_url = reverse_lazy('listar_medicos')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Médico ingresado con éxito!")
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        contexto =  super().get_context_data(**kwargs)
+        contexto["hay_especialidad"] = Especialidad.objects.exists()
+
+        return contexto
+    
+class EliminarMedicos(DeleteView):
+    model = Medico
+    template_name = 'confirmar_eliminar.html'
+    success_url = reverse_lazy('listar_medicos')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Médico eliminado con éxito!")
+        return super().form_valid(form)
+
+class ActualizarMedicos(UpdateView):
+    model = Medico
+    form_class = FormMedico
+    template_name = 'form_medicos.html'
+    success_url = reverse_lazy('listar_medicos')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Médico actualizado con éxito!")
         return super().form_valid(form)

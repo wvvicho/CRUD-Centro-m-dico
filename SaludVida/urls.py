@@ -21,9 +21,18 @@ import CentroMedico.views as cen
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #home
     path('', cen.index, name='home'),
+    
+    #Especialidades
     path('listar_especialidades/', cen.ListarEspecialidades.as_view(), name='listar_especialidades'),
-    path('crear_especialidad/', cen.CrearEspecialidades.as_view(), name='crear_especialidades'),
+    path('crear_especialidad/', cen.CrearEspecialidades.as_view(), name='crear_especialidad'),
     path('eliminar_especialidad/<int:pk>', cen.EliminarEspecialidades.as_view(), name='eliminar_especialidad'),
-    path('actualizar_especialidad/<int:pk>', cen.ActualizarEspecialidades.as_view(), name='actualizar_especialidad')
+    path('actualizar_especialidad/<int:pk>', cen.ActualizarEspecialidades.as_view(), name='actualizar_especialidad'),
+
+    #Médicos
+    path('listar_medicos/', cen.ListarMedicos.as_view(), name='listar_medicos'),
+    path('crear_medico/',cen.CrearMedicos.as_view(), name='crear_medico' ),
+    path('eliminar_medico/<int:pk>', cen.EliminarMedicos.as_view(), name='eliminar_medico'),
+    path('actualizar_medico/<int:pk>', cen.ActualizarMedicos.as_view(), name='actualizar_medico'),
 ]
