@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div class="d-flex">
+    <div class="col-6 border-end border-black">
+        <h1>Lista de Especialidades:</h1>
+        <ul class="d-flex flex-column list-unstyled p-2">
+            {% for especialidad in especialidades %}
+                <li class="d-flex flex-row justify-content-between fs-2 p-4 border border-secondary">
+                    <div>    
+                        {{especialidad.nombre}}
+                    </div> 
+                    <div>
+                        <a href="" class="btn btn-warning">Actualizar</a>
+                        <a href="" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <aside class="col-6 d-flex flex-column gap-4 text-center align-items-center">
+        {% block form_especialidad %}
+        <div class="w-70">
+            <h1>¿Desea ingresar una nueva especialidad?</h1>
+            <a href="{% url 'crear_especialidades' %}" class="btn btn-primary">Ingresar Especialidad</a>
+        </div>
+        {% endblock %}
+    </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block contenido %}
+    <div class="d-flex flex-column text-start align-items-center">
+        <h1 class="mb-4">Ingresar Especialidad</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label class="form-label mb-4">Nombre</label>
+            {{ form.nombre }}
+            <div class="text-center">
+                <button class="btn btn-success mt-4" type="submit">Ingresar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

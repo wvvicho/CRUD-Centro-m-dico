@@ -32,19 +32,25 @@
         }
     </style>
 </head>
-<div class="maqueta">
+<div class=" container-fluid maqueta">
     <header>
         <h1>Centro médico Salud Vida</h1>
-        <nav>
-            <ul>
-
+        <nav class="navbar">
+            <ul class="d-flex navbar-nav flex-row gap-5">
+                <li class="nav-item"><a href="/" class="text-decoration-none">Home</a></li>
+                <li class="nav-item"><a href="" class="text-decoration-none">Pacientes</a></li>
+                <li class="nav-item"><a href="" class="text-decoration-none">Médicos</a></li>
+                <li class="nav-item"><a href="{% url 'listar_especialidades' %}" class="text-decoration-none">Especialidades</a></li>
+                <li class="nav-item"><a href="" class="text-decoration-none">Citas</a></li>
             </ul>
         </nav>
     </header>
     <body>
         {% block contenido %}
-        Este es el contenido por defecto
-        {% endblock contenido %}
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <h1>BIENVENIDO AL CENTRO MÉDICO DE SALUD VIDA!</h1>
+        </div>
+        {% endblock %}
     </body>
     <footer>
         <span>©Vicente Ignacio Rosales Díaz</span>

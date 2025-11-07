@@ -21,5 +21,7 @@ import CentroMedico.views as cen
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', cen.index, name='home')
+    path('', cen.index, name='home'),
+    path('listar_especialidades/', cen.ListarEspecialidades.as_view(), name='listar_especialidades'),
+    path('crear_especialidad/', cen.CrearEspecialidades.as_view(), name='crear_especialidades')
 ]

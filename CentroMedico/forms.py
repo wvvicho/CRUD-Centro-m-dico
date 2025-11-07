@@ -5,6 +5,6 @@ class FormEspecialidad (forms.ModelForm):
     class Meta:
         model = Especialidad
         fields = ['nombre']
-        labels = {
-            'nombre': 'Nombre de la especialidad'
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class':'form-control border-black w-60'}),
         }
