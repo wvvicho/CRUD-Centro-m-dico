@@ -77,11 +77,12 @@ WSGI_APPLICATION = 'SaludVida.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'CentroMedico',
+        'NAME': 'centromedico',
         'USER':'adminSalud',
         'PASSWORD':'SaludVida',
         'HOST':'127.0.0.1',
         'PORT':'3306',
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" ,"use_pure": True},
     }
 }
 
