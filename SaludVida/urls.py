@@ -25,4 +25,5 @@ urlpatterns = [
     path('listar_especialidades/', cen.ListarEspecialidades.as_view(), name='listar_especialidades'),
     path('crear_especialidad/', cen.CrearEspecialidades.as_view(), name='crear_especialidades'),
     path('eliminar_especialidad/<int:pk>', cen.EliminarEspecialidades.as_view(), name='eliminar_especialidad'),
+    path('actualizar_especialidad/<int:pk>', cen.ActualizarEspecialidades.as_view(), name='actualizar_especialidad')
 ]

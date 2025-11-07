@@ -6,8 +6,9 @@
             {% csrf_token %}
             <label class="form-label mb-4">Nombre</label>
             {{ form.nombre }}
-            <div class="text-center">
+            <div class=" d-flex flex-row gap-2 w-50 text-center">
                 <button class="btn btn-success mt-4" type="submit">Ingresar</button>
+                <a href="{% url 'listar_especialidades' %}" class="btn btn-danger mt-4">Cancelar</a>
             </div>
         </form>
     </div>

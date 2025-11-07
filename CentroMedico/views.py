@@ -27,7 +27,14 @@ class CrearEspecialidades(CreateView):
         return super().form_valid(form)
 
 class ActualizarEspecialidades(UpdateView):
-    pass
+    model = Especialidad
+    form_class = FormEspecialidad
+    template_name = 'form_especialidades.html'
+    success_url = reverse_lazy('listar_especialidades')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Especialidad actualizada con éxito!")
+        return super().form_valid(form)
 
 class EliminarEspecialidades(DeleteView):
     model = Especialidad
