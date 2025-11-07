@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', cen.index, name='home'),
     path('listar_especialidades/', cen.ListarEspecialidades.as_view(), name='listar_especialidades'),
-    path('crear_especialidad/', cen.CrearEspecialidades.as_view(), name='crear_especialidades')
+    path('crear_especialidad/', cen.CrearEspecialidades.as_view(), name='crear_especialidades'),
+    path('eliminar_especialidad/<int:pk>', cen.EliminarEspecialidades.as_view(), name='eliminar_especialidad'),
 ]
