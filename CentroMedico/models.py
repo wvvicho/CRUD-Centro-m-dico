@@ -18,10 +18,21 @@ class Medico (models.Model):
         return f"Médico: {self.nombre_completo}, Especialidad: {self.especialidad}"
 
 class Paciente (models.Model):
+
+    Masculino = 'M'
+    Femenino = 'F'
+    Otro = 'O'
+
+    opciones_sexo = [
+        (Masculino, 'Masculino'),
+        (Femenino, 'Femenino'),
+        (Otro, 'Otro'),
+    ]
+
     nombre_completo = models.CharField(max_length=70)
     rut = models.CharField(unique=True, max_length=10)
     fecha_nacimiento = models.DateField(null=False, blank=False)
-    sexo = models.CharField(max_length=1)
+    sexo = models.CharField(max_length=1, choices=opciones_sexo, default=Otro)
     telefono = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):

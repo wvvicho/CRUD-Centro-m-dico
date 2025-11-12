@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import FormEspecialidad, FormMedico
+from .forms import FormEspecialidad, FormMedico, FormPaciente
 from .models import Especialidad, Medico, Paciente
 
 # Create your views here.
@@ -87,4 +87,41 @@ class ActualizarMedicos(UpdateView):
 
     def form_valid(self, form):
         messages.success(self.request, "Médico actualizado con éxito!")
+        return super().form_valid(form)
+    
+
+#CRUD de Paciente
+
+class ListarPacientes (ListView):
+    model = Paciente
+    template_name = 'listar_pacientes.html'
+    context_object_name = 'pacientes'
+
+class CrearPacientes (CreateView):
+    model = Paciente
+    form_class = FormPaciente
+    template_name = 'form_pacientes.html'
+    success_url = reverse_lazy('listar_pacientes')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Paciente ingresado con éxito!")
+        return super().form_valid(form)
+    
+class EliminarPacientes (DeleteView):
+    model = Paciente
+    template_name = 'confirmar_eliminar.html'
+    success_url = reverse_lazy('listar_pacientes')
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Paciente eliminado con éxito!")
+        return super().form_valid(form)
+    
+class ActualizarPaciente (UpdateView):
+    model = Paciente
+    form_class = FormPaciente
+    template_name = 'form_pacientes.html'
+    success_url = reverse_lazy('listar_pacientes')
+
+    def form_valid(self, form):
+        messages.success(self.request, "Paciente actualizado con éxito!")
         return super().form_valid(form)

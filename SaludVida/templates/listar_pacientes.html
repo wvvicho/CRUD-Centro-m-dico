@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div class="d-flex">
+    <div class="col-6 border-end border-black">
+        <h1>Lista de Pacientes:</h1>
+        <ul class="d-flex flex-column list-unstyled p-2">
+            {% for paciente in pacientes %}
+                <li class="d-flex flex-row justify-content-between fs-2 p-4 border border-secondary">
+                    <div>    
+                        <p>
+                            Nombre: {{ paciente.nombre_completo }}
+                            <br>
+                            RUT: {{ paciente.rut }}
+                            <br>
+                            Fecha de nacimiento: {{ paciente.fecha_nacimiento }}
+                            <br>
+                            Sexo: {{ paciente.sexo }}
+                            <br>
+                            {% if  paciente.telefono  %}
+                                Teléfono: {{ paciente.telefono }} 
+                            {% endif %}
+                        </p>
+                    </div> 
+                    <div>
+                        <a href="{% url 'actualizar_paciente' paciente.pk %}" class="btn btn-warning">Actualizar</a>
+                        <a href="{% url 'eliminar_paciente' paciente.pk %}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li>
+                    <h1>No hay pacientes</h1>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <aside class="col-6 d-flex flex-column gap-4 text-center align-items-center">
+        {% block form_medico %}
+        <div class="w-70">
+            <h1>¿Desea ingresar un nuevo paciente?</h1>
+            <a href="{% url 'crear_paciente' %}" class="btn btn-primary">Ingresar Paciente</a>
+        </div>
+        {% endblock %}
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+                <p class="text-success fs-1">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </aside>
+</div>
+{% endblock %}

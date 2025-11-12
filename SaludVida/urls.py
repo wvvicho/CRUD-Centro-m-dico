@@ -35,4 +35,10 @@ urlpatterns = [
     path('crear_medico/',cen.CrearMedicos.as_view(), name='crear_medico' ),
     path('eliminar_medico/<int:pk>', cen.EliminarMedicos.as_view(), name='eliminar_medico'),
     path('actualizar_medico/<int:pk>', cen.ActualizarMedicos.as_view(), name='actualizar_medico'),
+
+    #Paciente
+    path('listar_pacientes/', cen.ListarPacientes.as_view(), name='listar_pacientes'),
+    path('crear_paciente/', cen.CrearPacientes.as_view(), name='crear_paciente'),
+    path('eliminar_paciente/<int:pk>', cen.EliminarPacientes.as_view(), name='eliminar_paciente'),
+    path('actualizar_paciente/<int:pk>', cen.ActualizarPaciente.as_view(), name='actualizar_paciente'),
 ]

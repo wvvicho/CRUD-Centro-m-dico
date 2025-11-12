@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block contenido %}
+    <div class="d-flex flex-column text-start align-items-center">
+        <h1 class="mb-4">Ingresar Pacientes</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label class="form-label mb-4 mt-4">Nombre completo</label>
+            {{ form.nombre_completo }}
+            <label class="form-label mb-4 mt-4">RUT</label>
+            {{ form.rut }}
+            <label class="form-label mb-4 mt-4">Fecha de nacimiento</label>
+            {{ form.fecha_nacimiento }}
+            <label class="form-label mb-4 mt-4">Sexo</label>
+            {{ form.sexo }}
+            <label class="form-label mb-4 mt-4">Teléfono</label>
+            {{ form.telefono }}
+            <div class=" d-flex flex-row gap-2 w-50 text-center">
+                <button class="btn btn-success mt-4" type="submit">Ingresar</button>
+                <a href="{% url 'listar_pacientes' %}" class="btn btn-danger mt-4">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
