@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import FormEspecialidad, FormMedico, FormPaciente
-from .models import Especialidad, Medico, Paciente
+from .forms import FormEspecialidad, FormMedico, FormPaciente, FormCita
+from .models import Especialidad, Medico, Paciente, Cita
 
 # Create your views here.
 def index(req):
@@ -124,4 +124,30 @@ class ActualizarPaciente (UpdateView):
 
     def form_valid(self, form):
         messages.success(self.request, "Paciente actualizado con éxito!")
+        return super().form_valid(form)
+    
+
+#CRUD de Citas
+
+class ListarCitas (ListView):
+    model = Cita
+    template_name = 'listar_citas.html'
+    context_object_name = 'citas'
+
+class CrearCitas (CreateView):
+    model = Cita
+    form_class = FormCita
+    template_name = 'form_citas.html'
+    success_url = reverse_lazy('listar_citas')
+
+    def get_context_data(self, **kwargs):
+        contexto =  super().get_context_data(**kwargs)
+        contexto["hay_paciente"] = Paciente.objects.exists()
+        contexto["hay_medico"] = Medico.objects.exists()
+        contexto["hay_especialidad"] = Especialidad.objects.exists()
+
+        return contexto
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Cita ingresada con éxito!")
         return super().form_valid(form)

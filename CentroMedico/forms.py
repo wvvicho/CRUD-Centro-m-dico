@@ -32,3 +32,16 @@ class FormPaciente (forms.ModelForm):
             'sexo' : forms.Select(attrs={'class':'form-select border-black w-60'}), 
             'telefono' : forms.TextInput(attrs={'class':'form-control border-black w-60'}),
         }
+
+class FormCita (forms.ModelForm):
+    class Meta:
+        model = Cita
+        fields = ['paciente', 'medico', 'especialidad', 'fecha_cita', 'hora_cita', 'observaciones']
+        widgets = {
+            'paciente' : forms.Select(attrs={'class':'form-select border-black w-60'}), 
+            'medico' : forms.Select(attrs={'class':'form-select border-black w-60'}), 
+            'especialidad' : forms.Select(attrs={'class':'form-select border-black w-60'}), 
+            'fecha_cita' : forms.DateInput(attrs={'class':'form-control border-black w-60', 'type':'date'}), 
+            'hora_cita' : forms.TimeInput(attrs={'class':'form-control border-black w-60', 'type':'time', 'min':'08:00', 'max':'18:00', 'steps':'1800'}), 
+            'observaciones' : forms.Textarea(attrs={'class':'form-control border-black w-60'})
+        }

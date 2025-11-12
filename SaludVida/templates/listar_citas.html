@@ -2,42 +2,44 @@
 {% block contenido %}
 <div class="d-flex">
     <div class="col-6 border-end border-black">
-        <h1>Lista de Pacientes:</h1>
+        <h1>Lista de Citas:</h1>
         <ul class="d-flex flex-column list-unstyled p-2">
-            {% for paciente in pacientes %}
+            {% for cita in citas %}
                 <li class="d-flex flex-row justify-content-between fs-2 p-4 border border-secondary">
                     <div>    
                         <p>
-                            Nombre: {{ paciente.nombre_completo }}
+                            Paciente: {{ cita.paciente }}
                             <br>
-                            RUT: {{ paciente.rut }}
+                            Médico: {{ cita.medico }}
                             <br>
-                            Fecha de nacimiento: {{ paciente.fecha_nacimiento }}
+                            Especialidad: {{ cita.especialidad }}
                             <br>
-                            Sexo: {{ paciente.sexo }}
+                            Fecha cita: {{ cita.fecha_cita }}
                             <br>
-                            {% if  paciente.telefono  %}
-                                Teléfono: {{ paciente.telefono }} 
+                            Hora cita : {{ cita.hora_cita }}
+                            <br>
+                            {% if  cita.observaciones  %}
+                                observaciones: {{ cita.observaciones }} 
                             {% endif %}
                         </p>
                     </div> 
                     <div>
-                        <a href="{% url 'actualizar_paciente' paciente.pk %}" class="btn btn-warning">Actualizar</a>
-                        <a href="{% url 'eliminar_paciente' paciente.pk %}" class="btn btn-danger">Eliminar</a>
+                        <a href="" class="btn btn-warning">Actualizar</a>
+                        <a href="" class="btn btn-danger">Eliminar</a>
                     </div>
                 </li>
             {% empty %}
                 <li>
-                    <h1>No hay pacientes</h1>
+                    <h1>No hay citas</h1>
                 </li>
             {% endfor %}
         </ul>
     </div>
     <aside class="col-6 d-flex flex-column gap-4 text-center align-items-center">
-        {% block form_paciente %}
+        {% block form_medico %}
         <div class="w-70">
-            <h1>¿Desea ingresar un nuevo paciente?</h1>
-            <a href="{% url 'crear_paciente' %}" class="btn btn-primary">Ingresar Paciente</a>
+            <h1>¿Desea ingresar una nueva cita?</h1>
+            <a href="{% url 'crear_cita' %}" class="btn btn-primary">Ingresar Cita</a>
         </div>
         {% endblock %}
         {% if messages %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block contenido %}
+    <div class="d-flex flex-column text-start align-items-center">
+        <h1 class="mb-4">Ingresar Citas</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label class="form-label mb-4 mt-4">Paciente</label>
+            {{ form.paciente }}
+            <label class="form-label mb-4 mt-4">Médico</label>
+            {{ form.medico }}
+            <label class="form-label mb-4 mt-4">Fecha cita</label>
+            {{ form.fecha_cita }}
+            <label class="form-label mb-4 mt-4">Hora cita</label>
+            {{ form.hora_cita }}
+            <label class="form-label mb-4 mt-4">Observaciones</label>
+            {{ form.observaciones }}
+            <div class=" d-flex flex-row gap-2 w-50 text-center">
+                {% if hay_paciente %}
+                    {% if hay_medico %}
+                        {% if hay_especialidad %}    
+                            <button class="btn btn-success mt-4" type="submit">Ingresar</button>
+                        {% else %}
+                            <h3 class="text-danger text-nowrap mt-3">Por favor ingrese una especialidad primero.</h3>
+                        {% endif %}
+                    {% else %}
+                        <h3 class="text-danger text-nowrap mt-3">Por favor ingrese un médico primero.</h3>
+                    {% endif %}
+                {% else %}
+                    <h3 class="text-danger text-nowrap mt-3">Por favor ingrese un paciente primero.</h3>
+                {% endif %}
+                <a href="{% url 'listar_citas' %}" class="btn btn-danger mt-4">Cancelar</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
